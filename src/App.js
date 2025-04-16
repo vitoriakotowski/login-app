@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from "react";
 
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleLogin = () => {
+    const validEmail = "eduardo.lino@pucpr.br";
+    const validPassword = "123456";
+
+    if (email === validEmail && password === validPassword) {
+      setMessage("Acessado com sucesso!");
+    } else {
+      setMessage("Usuário ou senha incorretos!");
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "2rem", fontFamily: "Arial" }}>
+      <h1>Login</h1>
+      <div>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ display: "block", marginBottom: "0.5rem" }}
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ display: "block", marginBottom: "0.5rem" }}
+        />
+        <button onClick={handleLogin}>Acessar</button>
+      </div>
+      <p style={{ marginTop: "1rem" }}>{message}</p>
     </div>
   );
 }
